@@ -9,8 +9,13 @@ let rec fibonacci x =
     if x = 1 then 1 else if x = 2 then 1 else fibonacci (x - 1) + fibonacci (x - 2)
 
 let reverseList list =
-    let length = List.length list
-    List.init length (fun i -> List.nth list (length - i - 1))
+    let rec reverseListInner result list = 
+        match list with
+        | head :: tale -> 
+            let temp = head :: result 
+            reverseListInner temp tale
+        | [] -> result
+    reverseListInner [] list
 
 let buildList length = 
     let rec binaryPower i = 
